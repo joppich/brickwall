@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  brickwall-backend:
+    image: brickwall-backend:latest
+    build: 
+      context: ./src
+    restart: unless-stopped
+    volumes:
+      - database:/srv/data/db
+      - content:/srv/data/content
+      - ./src:/srv/brickwall
+
+  brickwall-nginx:
+    image: brickwall-nginx:latest
+    build:
+      context: ./nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - content:/srv/data/content
+      - ./nginx:/srv/nginx
+
+volumes:
+  
+  database:
+  content:
