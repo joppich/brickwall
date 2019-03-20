@@ -1,0 +1,3 @@
+[submodule "nginx/brickwall-ui"]
+	path = nginx/brickwall-ui
+	url = git@github.com:joppich/brickwall-ui.git
