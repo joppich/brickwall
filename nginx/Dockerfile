@@ -7,6 +7,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get upgrade -yq &&\
     rm -r /var/lib/apt/lists /var/cache/apt/*
 
+ADD certs nginx.conf /srv/nginx/
+ADD brickwall-ui /srv/nginx/brickwall-ui/
+
 RUN ln -s /srv/nginx/certs/server.crt /etc/nginx/server.crt &&\
     ln -s /srv/nginx/certs/server.key /etc/nginx/server.key &&\
     rm /etc/nginx/nginx.conf &&\
